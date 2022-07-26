@@ -1,0 +1,14 @@
+CAPSTONE Project – code name – Prefect-print
+3D Printing Plastic Guide –
+
+3D printing plastic guide page – 
+•	Page to access and show stored database information about printing profiles for plastics
+•	Allows modifications to stored plastic information or new additions to be submitted
+•	Table formatting for display including averages and sections
+•	Buttons and drop downs to select desired action (add, delete, modify)
+
+Features:
+It will pull a database and display it
+Allow modifications to current database
+Allow new submits to database
+Hidden buttons and boxes with rollover functions
