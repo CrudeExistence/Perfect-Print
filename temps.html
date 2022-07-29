@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Perfect Print</title>
     <link rel="stylesheet" href="/css">
-    <link rel="stylesheet" href="/styles.css"
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <header>
@@ -18,31 +18,37 @@
     </header>
     <nav>
         <!-- This will contain any navigation aspects that I can think of -->
+        <button type="button" class="generalButton">randomizer</button>
 
     </nav>
 
     <section>
+        <h4>Temperature information</h4>
         <div id="dbDisplay">
             <!-- Populate the databse information and display it to the page with created elements -->
         </div>
         <div id="buttonBar">
-            <button type="button">Create</button>
-            <button type="button">Modify</button>
-            <button type="button">Delete</button>
+            <button type="button" id="create">Create</button>
+            <button type="button" id="modify">Modify</button>
+            <button type="button" id="delete">Delete</button>
         </div>
         <div id="content">
             <div id="createContent">
                 <!-- hidden content till button is clicked to create -->
 
+                
             </div>
             <div id="modifyContent">
                 <!-- hidden content till button is clicked to modify -->
 
+                
             </div>
             <div id="deleteContent">
                 <!-- hidden content till button is clicked to delete -->
 
+                
             </div>
+            <button type="button" id="clear">clear</button>
             <!-- each div above will need a clear button to clear table's visability -->
         </div>
     </section>

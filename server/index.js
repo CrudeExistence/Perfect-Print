@@ -4,6 +4,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const {SERVER_PORT} = process.env
+const {seed} = require('./seed.js')
 
 
 app.use(express.json())
@@ -26,6 +27,8 @@ app.get('/jsback', (req,res) => {
 })
 
 
+//? commented out because it's already in the database now
+// app.post('/seed', seed)
 
 
 
