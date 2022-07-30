@@ -7,6 +7,8 @@ const {SERVER_PORT} = process.env
 const {seed} = require('./seed.js')
 
 
+
+
 app.use(express.json())
 app.use(cors())
 
@@ -26,10 +28,16 @@ app.get('/jsback', (req,res) => {
     res.sendFile(path.join(__dirname, 'index.js'))
 })
 
+const { 
+    getTempInfo 
+} = require('./controller')
+
 
 //? commented out because it's already in the database now
 // app.post('/seed', seed)
 
+
+app.get('/temps', getTempInfo)
 
 
 app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
