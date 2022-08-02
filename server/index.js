@@ -32,6 +32,8 @@ const {
     getTempInfo 
 } = require('./controller')
 
+app.get('/getTemps', getTempInfo)
+
 
 //? commented out because it's already in the database now
 // app.post('/seed', seed)

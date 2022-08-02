@@ -33,35 +33,78 @@
             <button type="button" id="delete" class="edit">Delete Data</button>
         </div>
         <div id="content">
-            <div id="createContent">
+            <div id="createContent" class="createVisible">
+                <h3 class="createVisible">Let's add a new plastic</h3><br>
                 <!-- hidden content till button is clicked to create -->
-
+                <input placeholder="Plastic Brand" id="brandInput" class="createVisible">
+                <input placeholder="Plastic Color" id="colorInput" class="createVisible">
+                <select name="types" id="typeInput" class="createVisible">
+                    <option value="Smooth">Smooth</option>
+                    <option value="Matte">Matte</option>
+                    <option value="Silk">Silk</option>
+                </select>
+                <input placeholder="Image Link" id="imgInput" class="createVisible">
+                <input placeholder="Purchase Link" id="buyInput" class="createVisible">
+                <input placeholder="Suggested Temps" id="suggestedInput" class="createVisible">
+                <input placeholder="Lowest Temp" id="lowestInput" class="createVisible">
+                <input placeholder="Highest Temp" id="highestInput" class="createVisible">
+                <input placeholder="Best Temp" id="bestInput" class="createVisible">
+                <br  class="createVisible">
+                <button type="button" id="createSubmit" class="createVisible">Submit</button>
                 
             </div>
-            <div id="modifyContent">
+            <div id="modifyContent" class="modifyVisible">
+                <h3 class="modifyVisible">Modify an entry for accuracy</h3><br>
                 <!-- hidden content till button is clicked to modify -->
-
-                
+                <select name="modifySelect" id="modifySelect" class="modifyVisible">
+                    <option value="grabsBrandAndColor">options</option>
+                </select>
+                <br class="modifyVisible">
+                <input placeholder="Selected Brand" id="brandModify" class="modifyVisible">
+                <input placeholder="Selected Color" id="colorModify" class="modifyVisible">
+                <select name="Selected type" id="typeModify" class="modifyVisible">
+                    <option value="Smooth">Smooth</option>
+                    <option value="Matte">Matte</option>
+                    <option value="Silk">Silk</option>
+                </select>
+                <input placeholder="Current Image Link" id="imgModify" class="modifyVisible">
+                <input placeholder="Current Purchase Link" id="buyModify" class="modifyVisible">
+                <input placeholder="Current Suggested Temps" id="suggestedModify" class="modifyVisible">
+                <input placeholder="Current Lowest Temp" id="lowestModify" class="modifyVisible">
+                <input placeholder="Current Highest Temp" id="highestModify" class="modifyVisible">
+                <input placeholder="Current Best Temp" id="bestModify" class="modifyVisible">
+                <br>
+                <button type="button" id="modifySubmit" class="modifyVisible">Submit</button>
             </div>
-            <div id="deleteContent">
+            <div id="deleteContent" class="deleteVisible">
+                <h3 class="deleteVisible">Looks like we need to delete one</h3><br>
                 <!-- hidden content till button is clicked to delete -->
-
-                
+                <select name="deleteSelect" id="deleteSelect" class="deleteVisible">
+                    <option value="grabsBrandAndColor">options</option>
+                </select>
+                <br class="deleteVisible">
+                <button type="button" id="deleteSubmit" class="deleteVisible">Submit</button>
             </div>
-            <button type="button" id="clear">clear</button>
+            <button type="button" id="clear" class="clearVisible">clear</button>
             <!-- each div above will need a clear button to clear table's visability -->
         </div>
     </section>
-    <button type="button" id="none" class="edit">Delete Data</button>
+    
 
     <code id="explainsCode">
-
+        <p>On this page the blank does blank and uses blank to do blank</p>
+        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
+        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
+        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
+        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
+        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
     </code>
     <footer>
         <!-- This will contain all of my links and other -->
 
     </footer>
     
+<script src=https://unpkg.com/axios/dist/axios.min.js></script>
 <script src="/js"></script>
 <script src="/main.js"></script>
 </body>
