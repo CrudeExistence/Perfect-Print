@@ -2,7 +2,7 @@
 const tempCallBack = ({ data: temps }) => displayingTemps(temps)
 const tempPopulator = ({ data: temps }) => displayingPopulate(temps) & displayingPopulateDelete(temps)
 // const deletePopulator = ({ data: temps }) => deletePopulate(temps)
-
+let tempsObj = {}
 
 const getAllTemps = () => {
     axios.get(`http://localhost:4004/getTemps`)
@@ -43,13 +43,16 @@ const createDisplay = (temps) => {
     dbDisplay.appendChild(tempPiece)
     }
 
-    // plastic_id, brand, color, color_type, image, buy_link, temp_suggested, temp_lowest, temp_highest, temp_best
+    //* plastic_id, brand, color, color_type, image, buy_link, temp_suggested, temp_lowest, temp_highest, temp_best
 
+    //? if name = 
 
 function displayingTemps(arr) {
+    delete dbDisplay.children
     dbDisplay.innerHTML = ``
     for (let i=0; i<arr.length; i++) {
         createDisplay(arr[i])
+        
     }
 }
 
@@ -67,6 +70,7 @@ const displayCreate = () => {
 
 const displayModify = () => {
     hideAll()
+    populateTemps()
     let modifyElems = document.querySelectorAll('.modifyHidden');
 
     for(let i=0; i<modifyElems.length; i++) {
@@ -79,6 +83,7 @@ const displayModify = () => {
 
 const displayDelete = () => {
     hideAll()
+    populateTemps()
     let deleteElems = document.querySelectorAll('.deleteHidden');
 
     for(let i=0; i<deleteElems.length; i++) {
@@ -94,6 +99,15 @@ const hideAll = () => {
     let createElems = document.querySelectorAll('.createVisible');
     let modifyElems = document.querySelectorAll('.modifyVisible');
     let deleteElems = document.querySelectorAll('.deleteVisible');
+    let brand = document.querySelector('#brandModify')
+    let color = document.querySelector('#colorModify')
+    let type = document.querySelector('#typeModify')
+    let img = document.querySelector('#imgModify')
+    let buy = document.querySelector('#buyModify')
+    let suggested = document.querySelector('#suggestedModify')
+    let lowest = document.querySelector('#lowestModify')
+    let highest = document.querySelector('#highestModify')
+    let best = document.querySelector('#bestModify')
 
     // console.log()
 
@@ -110,6 +124,38 @@ const hideAll = () => {
         a.className = 'deleteHidden'
         }
     clearBTN.className = 'clearHidden'
+
+    brand.placeholder = "Selected Brand"
+    color.placeholder = "Selected Color"
+    type.value = "Smooth"
+    img.placeholder = "Current Image Link"
+    buy.placeholder = "Current Purchase Link"
+    suggested.placeholder = "Current Suggested Temps"
+    lowest.placeholder = "Current Lowest Temp"
+    highest.placeholder = "Current Highest Temp"
+    best.placeholder = "Current Best Temp"
+
+    let brandModify = document.querySelector('#brandModify')
+    let colorModify = document.querySelector('#colorModify')
+    let typeModify = document.querySelector('#typeModify')
+    let imgModify = document.querySelector('#imgModify')
+    let buyModify = document.querySelector('#buyModify')
+    let suggestedModify = document.querySelector('#suggestedModify')
+    let lowestModify = document.querySelector('#lowestModify')
+    let highestModify = document.querySelector('#highestModify')
+    let bestModify = document.querySelector('#bestModify')
+    // let modifyOptModify = document.querySelector('#modifySelect')
+
+    brandModify.value = ''
+    colorModify.value = ''
+    typeModify.value = ''
+    imgModify.value = ''
+    buyModify.value = ''
+    suggestedModify.value = ''
+    lowestModify.value = ''
+    highestModify.value = ''
+    bestModify.value = ''
+
 }
 
 const addNew = (e) => {
@@ -141,12 +187,12 @@ const addNew = (e) => {
 
     axios.post("http://localhost:4004/getTemps", bodyObj)
     .then((res) => {
-        alert(res.data);
+        console.log(res.data);
     })
 
     brand.value = ''
     color.value = ''
-    type.value = 'Matte'
+    type.value = 'Smooth'
     img.value = ''
     buy.value = ''
     suggested.value = ''
@@ -154,15 +200,16 @@ const addNew = (e) => {
     highest.value = ''
     best.value = ''
     
+    hideAll()
 }
 
 function displayingPopulate(arr) {
     modifyOptions.innerHTML = ``
-    console.log('first')
     delete modifyOptions.children
-    console.log('second')
+    modifyOptions.innerHTML = `<option selected disabled value="null" >Select an option</option>`
     for (let i=0; i<arr.length; i++) {
         modifyPopulate(arr[i])
+        tempsObj[arr[i].plastic_id] = arr[i]
     }
 }
 
@@ -175,12 +222,10 @@ function displayingPopulateDelete(arr) {
 }
 
 const modifyPopulate = (temps) => {
-    // modifyOptions
     let temporary = document.createElement('option')
     temporary.text = `${temps.brand}.${temps.color}`
     temporary.value = `${temps.plastic_id}`
     modifyOptions.appendChild(temporary)
-    
 }
 
 const deletePopulate = (temps) => {
@@ -190,7 +235,7 @@ const deletePopulate = (temps) => {
     deleteOptions.appendChild(temporary)
 }
 
-const modifyChooser = (temps) => {
+const modifyChooser = (event) => {
     let brand = document.querySelector('#brandModify')
     let color = document.querySelector('#colorModify')
     let type = document.querySelector('#typeModify')
@@ -201,10 +246,7 @@ const modifyChooser = (temps) => {
     let highest = document.querySelector('#highestModify')
     let best = document.querySelector('#bestModify')
 
-    axios.get(`http://localhost:4004/getTemps`)
-        .then(res => {
-            //! Trying to figure out a way to grab just the one with the ID I need to populate the fields below with the selected options selection
-        })
+    let temps = tempsObj[event.target.value]
 
 
     brand.placeholder = `${temps.brand}`
@@ -216,29 +258,68 @@ const modifyChooser = (temps) => {
     lowest.placeholder = `${temps.temp_lowest}`
     highest.placeholder = `${temps.temp_highest}`
     best.placeholder = `${temps.temp_best}`
+
 }
 
 const modifyEntry = () => {
-    //! Not entirely sure what I should put here
+    let brand = document.querySelector('#brandModify')
+    let color = document.querySelector('#colorModify')
+    let type = document.querySelector('#typeModify')
+    let img = document.querySelector('#imgModify')
+    let buy = document.querySelector('#buyModify')
+    let suggested = document.querySelector('#suggestedModify')
+    let lowest = document.querySelector('#lowestModify')
+    let highest = document.querySelector('#highestModify')
+    let best = document.querySelector('#bestModify')
+    let modifyOpt = document.querySelector('#modifySelect').value
+
+    console.log(modifyOpt + ' is the modifyOpt output')
+
+    axios.put(`http://localhost:4004/getTemps/${modifyOpt}`, {
+        id: modifyOpt, 
+        brand: brand.value || brand.placeholder, 
+        color: color.value || color.placeholder, 
+        color_type: type.value || type.placeholder, 
+        image: img.value || img.placeholder, 
+        buy_link: buy.value || buy.placeholder, 
+        temp_suggested: suggested.value || suggested.placeholder,
+        temp_lowest: lowest.value || lowest.placeholder, 
+        temp_highest: highest.value || highest.placeholder, 
+        temp_best: best.value || best.placeholder
+        })
+        .then(() => {
+            hideAll()
+            getAllTemps()
+        })
+        .catch(err => console.log('error with put', err))
+
+
 }
 
 const deleteEntry = () => {
-    //deleteSubmit
-    
-
+    let deleteOpt = document.querySelector('#deleteSelect').value
+    axios.delete(`http://localhost:4004/getTemps/${deleteOpt}`)
+        .then((res) => {
+        console.log(res.data)
+        hideAll()
+        getAllTemps()
+    })
 }
+
 
 
 createSubmit.addEventListener('click', addNew)
 
-// modifySubmit.addEventListener('click', )
+modifySubmit.addEventListener('click', modifyEntry)
 
-// deleteSubmit.addEventListener('click', deleteEntry)
+deleteSubmit.addEventListener('click', deleteEntry)
 
 clearBTN.addEventListener('click', hideAll)
 createBTN.addEventListener('click', displayCreate)
 modifyBTN.addEventListener('click', displayModify)
 deleteBTN.addEventListener('click', displayDelete)
+modifyOptions.addEventListener('change', modifyChooser)
+
 
 
 getAllTemps()

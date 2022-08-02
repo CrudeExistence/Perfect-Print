@@ -29,17 +29,20 @@ app.get('/jsback', (req,res) => {
 })
 
 const { 
-    getTempInfo 
+    getTempInfo,
+    addNew,
+    modifyEntry,
+    deleteEntry
 } = require('./controller')
 
 app.get('/getTemps', getTempInfo)
-
+app.post('/getTemps', addNew)
+app.put(`/getTemps/:id`, modifyEntry)
+app.delete(`/getTemps/:id`, deleteEntry)
 
 //? commented out because it's already in the database now
 // app.post('/seed', seed)
 
-
-app.get('/temps', getTempInfo)
 
 
 app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
