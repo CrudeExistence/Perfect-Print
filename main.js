@@ -1,7 +1,8 @@
 // main.js is for the buttons and event listeners
+
 const tempCallBack = ({ data: temps }) => displayingTemps(temps)
 const tempPopulator = ({ data: temps }) => displayingPopulate(temps) & displayingPopulateDelete(temps)
-// const deletePopulator = ({ data: temps }) => deletePopulate(temps)
+
 let tempsObj = {}
 
 const getAllTemps = () => {
@@ -28,8 +29,6 @@ const deleteOptions = document.querySelector('#deleteSelect')
 const createDisplay = (temps) => {
     const tempPiece = document.createElement('div')
     tempPiece.classList.add('display')
-    // console.log('are we getting here?')
-    //! onclick settings
     tempPiece.innerHTML = `
     <a href="${temps.buy_link}"><img src="${temps.image}" class="imgTemp"></a>
     <h4> Brand: </h4><p>${temps.brand}</p>
@@ -43,9 +42,6 @@ const createDisplay = (temps) => {
     dbDisplay.appendChild(tempPiece)
     }
 
-    //* plastic_id, brand, color, color_type, image, buy_link, temp_suggested, temp_lowest, temp_highest, temp_best
-
-    //? if name = 
 
 function displayingTemps(arr) {
     delete dbDisplay.children
@@ -63,6 +59,7 @@ const displayCreate = () => {
     for(let i=0; i<createElems.length; i++) {
         let a = createElems[i]
         a.className = 'createVisible'
+        a.value = ''
     }
 
     clearBTN.className = 'clearVisible'
@@ -95,7 +92,6 @@ const displayDelete = () => {
 }
 
 const hideAll = () => {
-    // console.log('this is happening')
     let createElems = document.querySelectorAll('.createVisible');
     let modifyElems = document.querySelectorAll('.modifyVisible');
     let deleteElems = document.querySelectorAll('.deleteVisible');
@@ -108,8 +104,6 @@ const hideAll = () => {
     let lowest = document.querySelector('#lowestModify')
     let highest = document.querySelector('#highestModify')
     let best = document.querySelector('#bestModify')
-
-    // console.log()
 
     for(let i = 0; i < createElems.length; i++){
         let a = createElems[i]
@@ -144,7 +138,6 @@ const hideAll = () => {
     let lowestModify = document.querySelector('#lowestModify')
     let highestModify = document.querySelector('#highestModify')
     let bestModify = document.querySelector('#bestModify')
-    // let modifyOptModify = document.querySelector('#modifySelect')
 
     brandModify.value = ''
     colorModify.value = ''
@@ -183,24 +176,30 @@ const addNew = (e) => {
         temp_best: best.value
     }
 
-    createDisplay(bodyObj)
-
-    axios.post("http://localhost:4004/getTemps", bodyObj)
-    .then((res) => {
-        console.log(res.data);
-    })
-
-    brand.value = ''
-    color.value = ''
-    type.value = 'Smooth'
-    img.value = ''
-    buy.value = ''
-    suggested.value = ''
-    lowest.value = ''
-    highest.value = ''
-    best.value = ''
+    if (bodyObj.brand === '' || bodyObj.color === '' || bodyObj.color_type === '' || bodyObj.image === '' || bodyObj.buy_link === '' || bodyObj.temp_suggested === '' || bodyObj.temp_lowest === '' || bodyObj.temp_highest === '' || bodyObj.temp_best === '') {
+        alert(`WARNING:
+        All fields must be filled out.`)
+    } else {
+        createDisplay(bodyObj)
+        axios.post("http://localhost:4004/getTemps", bodyObj)
+        .then((res) => {
+            console.log(res.data);
+        })
     
-    hideAll()
+        brand.value = ''
+        color.value = ''
+        type.value = 'Smooth'
+        img.value = ''
+        buy.value = ''
+        suggested.value = ''
+        lowest.value = ''
+        highest.value = ''
+        best.value = ''
+        
+        hideAll()
+
+    
+    }
 }
 
 function displayingPopulate(arr) {
@@ -273,7 +272,6 @@ const modifyEntry = () => {
     let best = document.querySelector('#bestModify')
     let modifyOpt = document.querySelector('#modifySelect').value
 
-    console.log(modifyOpt + ' is the modifyOpt output')
 
     axios.put(`http://localhost:4004/getTemps/${modifyOpt}`, {
         id: modifyOpt, 
@@ -309,17 +307,13 @@ const deleteEntry = () => {
 
 
 createSubmit.addEventListener('click', addNew)
-
 modifySubmit.addEventListener('click', modifyEntry)
-
 deleteSubmit.addEventListener('click', deleteEntry)
-
 clearBTN.addEventListener('click', hideAll)
 createBTN.addEventListener('click', displayCreate)
 modifyBTN.addEventListener('click', displayModify)
 deleteBTN.addEventListener('click', displayDelete)
 modifyOptions.addEventListener('change', modifyChooser)
-
 
 
 getAllTemps()

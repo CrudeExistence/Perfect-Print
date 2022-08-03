@@ -68,6 +68,9 @@ section h4 {
     width: 100px;
     border-radius: 60%;
     border: 4px solid black;
+    box-shadow: 
+        inset 10px 0 25px 5px #15ff00,
+        inset -10px 0 25px 5px #ff00c8;
 }
 
 #buttonBar {
