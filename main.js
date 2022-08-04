@@ -26,6 +26,7 @@ const clearBTN = document.querySelector('#clear')
 const modifyOptions = document.querySelector('#modifySelect')
 const deleteOptions = document.querySelector('#deleteSelect')
 
+
 const createDisplay = (temps) => {
     const tempPiece = document.createElement('div')
     tempPiece.classList.add('display')
@@ -305,7 +306,6 @@ const deleteEntry = () => {
 }
 
 
-
 createSubmit.addEventListener('click', addNew)
 modifySubmit.addEventListener('click', modifyEntry)
 deleteSubmit.addEventListener('click', deleteEntry)
@@ -316,6 +316,12 @@ deleteBTN.addEventListener('click', displayDelete)
 modifyOptions.addEventListener('change', modifyChooser)
 
 
+const errorInfo = () => {
+    console.log('errors on the log are due to having two stylesheet link tags and two script tags. One tag is for use in the hosted server and one is for local hosting. This way both can work from the same GitHub repository.')
+}
+
+
 getAllTemps()
 populateTemps()
 hideAll()
+errorInfo()

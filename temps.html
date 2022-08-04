@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="#">
     <title>Perfect Print</title>
 
-    <!-- This tag is for the hosted site -->
-    <!-- <link rel="stylesheet" href="/css"> -->
+<!-- This tag is for the hosted site -->
+    <link rel="stylesheet" href="/css">
 
 <!-- This tag is for when doing a local host such as LiveServer -->
     <link rel="stylesheet" href="/styles.css">
@@ -17,21 +17,23 @@
 <body>
     <header>
         <div id="headerBox">
-            <!-- This will be where I'll put the 3D object -->
-            <h3>Something here</h3>
+<!-- This will be where I'll put the 3D object -->
+            <div id="box"></div>
         </div>
 
     </header>
-    <nav>
-        <!-- This will contain any navigation aspects that I can think of -->
-        <button type="button" class="generalButton">randomizer</button>
+    <div id="navContainer">
+        <nav>
+<!-- This will contain any navigation aspects that I can think of -->
 
-    </nav>
-
+            
+        </nav>
+    </div>
+        
     <section>
         <h4 class="heading">Temperature information</h4>
         <div id="dbDisplay">
-            <!-- Populate the databse information and display it to the page with created elements -->
+<!-- Populate the databse information and display it to the page with created elements -->
         </div>
         <div id="buttonBar">
             <button type="button" id="create" class="edit">Create New</button>
@@ -41,7 +43,7 @@
         <div id="content">
             <div id="createContent" class="createVisible">
                 <h3 class="createVisible">Let's add a new plastic</h3><br>
-                <!-- hidden content till button is clicked to create -->
+<!-- hidden content till button is clicked to create -->
                 <input placeholder="Plastic Brand" id="brandInput" class="createVisible" required>
                 <input placeholder="Plastic Color" id="colorInput" class="createVisible" required>
                 <select name="types" id="typeInput" class="createVisible">
@@ -61,7 +63,7 @@
             </div>
             <div id="modifyContent" class="modifyVisible">
                 <h3 class="modifyVisible">Modify an entry for accuracy</h3><br>
-                <!-- hidden content till button is clicked to modify -->
+<!-- hidden content till button is clicked to modify -->
                 <select name="modifySelect" id="modifySelect" class="modifyVisible">
                     <option value="grabsBrandAndColor">options</option>
                 </select>
@@ -84,7 +86,7 @@
             </div>
             <div id="deleteContent" class="deleteVisible">
                 <h3 class="deleteVisible">Looks like we need to delete one</h3><br>
-                <!-- hidden content till button is clicked to delete -->
+<!-- hidden content till button is clicked to delete -->
                 <select name="deleteSelect" id="deleteSelect" class="deleteVisible">
                     <option value="grabsBrandAndColor">options</option>
                 </select>
@@ -92,28 +94,35 @@
                 <button type="button" id="deleteSubmit" class="deleteVisible">Submit</button>
             </div>
             <button type="button" id="clear" class="clearVisible">clear</button>
-            <!-- each div above will need a clear button to clear table's visability -->
+<!-- each div above will need a clear button to clear table's visability -->
         </div>
     </section>
     
 
     <code id="explainsCode">
-        <p>On this page the blank does blank and uses blank to do blank</p>
-        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
-        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
-        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
-        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
-        <p>I was able to create this using the following and there's more information here that will continue to go on and on and on so that everything is explained and that everything works out the way that I want it to.</p>
+        <p>Let's break down the code used on this application</p>
+        <br><br>
+        <p class="center">*_ HTML _*</p>
+        <p>The building blocks of the site which include semantic tags and the skeleton of the website. This includes the containers, placement for everything, buttons, and more.</p>
+        <br>
+        <p class="center">*_ CSS _*</p>
+        <p>Styling through CSS allows for the site to be colored, shadowed, made see-through, moved, pushed, shaped and more. Using Flexbot I was able to align all the content and make it flow better.</p>
+        <br>
+        <p class="center">*_ JavaScript _*</p>
+        <p>JavaScript is where most of the magic happens. Javascript uses Axios to make requests between the server side and the front-end to fulfill requests. The first you'll notice is that the items populated were pulled with PostgressSQL from a hosted database. Then the information is looped over to create HTML elements throughout the page. It's used to apply, or remove, classes from HTML objects and displays. Through applying event listeners to the different buttons, they are programmed to perform as expected.</p>
+        <br>
+        <p class="center">HTML - CSS - JavaScript - PostgressSQL - Axios - Plus More</p>
+        <br>
     </code>
     <footer>
-        <!-- This will contain all of my links and other -->
+<!-- This will contain all of my links and other -->
         <p>Scroll down to reveal details on what went into making this full-stack application</p>
     </footer>
     
 <script src=https://unpkg.com/axios/dist/axios.min.js></script>
 
 <!-- This tag is for the hosted site -->
-<!-- <script src="/js"></script> -->
+<script src="/js"></script>
 
 <!-- This tag is for when doing a local host such as LiveServer -->
 <script src="/main.js"></script>

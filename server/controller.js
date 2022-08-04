@@ -22,7 +22,6 @@ module.exports = {
 
     addNew: (req, res) => {
         let {
-            // plastic_id,
             brand,
             color,
             color_type,
@@ -33,17 +32,7 @@ module.exports = {
             temp_highest,
             temp_best
         } = req.body
-        // let newPlastic = {
-        //     brand,
-        //     color,
-        //     color_type,
-        //     image,
-        //     buy_link,
-        //     temp_suggested,
-        //     temp_lowest,
-        //     temp_highest,
-        //     temp_best
-        // }
+
         sequelize.query(`
         INSERT INTO printing_full 
         (brand, color, color_type, image, buy_link, temp_suggested, temp_lowest, temp_highest, temp_best)
