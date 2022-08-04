@@ -43,6 +43,6 @@ app.delete(`/getTemps/:id`, deleteEntry)
 //? commented out because it's already in the database now
 // app.post('/seed', seed)
 
+const port = process.env.PORT || 4004
 
-
-app.listen(SERVER_PORT, () => console.log(`up on ${SERVER_PORT}`))
+app.listen(port, () => console.log(`up on ${port}`))
